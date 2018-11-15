@@ -11,16 +11,47 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
+      meta: {
+          requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      },
+      children:[{
+          path: '/',
+          name: 'home',
+          component: () => import('./views/home/index')
+      }]
     },
     {
-      path: "/about",
-      name: "about",
+      path: "/caseShare",
+      name: "caseShare",
+      component: Home,
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
-    }
+      meta: {
+          requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      },
+      children:[{
+          path: '/caseShare',
+          name: 'caseShare',
+          component: () => import('./views/caseShare/index')
+      }]
+    },
+      {
+          path: "/solution",
+          name: "solution",
+          component: Home,
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          meta: {
+              requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+          },
+          children:[{
+              path: '/solution',
+              name: 'solution',
+              component: () => import('./views/solution/index')
+          }]
+      }
   ]
 });
