@@ -5,7 +5,7 @@
         <img src="../assets/img/logo.png" alt="">
         <ul class="nav">
           <li @click="$router.push('/')" :class="$route.name === 'home' ? 'active' : ''">首页</li>
-          <li>产品中心</li>
+          <li @click="$router.push('/product')" :class="$route.name === 'product' ? 'active' : ''">产品中心</li>
           <li @click="$router.push('/solution')" :class="$route.name === 'solution' ? 'active' : ''">解决方案</li>
           <li @click="$router.push('/caseShare')" :class="$route.name === 'caseShare' ? 'active' : ''">案例分享</li>
           <li>软件开发</li>

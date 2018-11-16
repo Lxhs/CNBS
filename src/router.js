@@ -5,7 +5,7 @@ import Home from "./views/Home.vue";
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  // mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
@@ -51,6 +51,26 @@ export default new Router({
               path: '/solution',
               name: 'solution',
               component: () => import('./views/solution/index')
+          }]
+      },
+      {
+          path: "/product",
+          name: "product",
+          component: Home,
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          meta: {
+              requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+          },
+          children:[{
+              path: '/product',
+              name: 'product',
+              component: () => import('./views/product/index')
+          },{
+              path: 'detail',
+              name: 'product',
+              component: () => import('./views/product/component/prdDetail')
           }]
       }
   ]
